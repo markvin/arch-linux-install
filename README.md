@@ -375,9 +375,9 @@ passwd
 The `HOOKS` line might need to be updated in `/etc/mkinitcpio.conf` depending on the disk method you used:
 
 - Method 1: nothing to change
-- Method 2: `base systemd udev autodetect modconf block sd-lvm2 filesystems keyboard fsck`
+- Method 2: `base systemd udev autodetect modconf block lvm2 filesystems keyboard fsck`
 - Method 3: `base systemd udev autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck`
-- Method 4: `base systemd udev autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck`
+- Method 4: `base systemd udev autodetect keyboard sd-vconsole modconf block sd-encrypt lvm2 filesystems fsck`
 
 Generate the ramdisks using the presets:
 
@@ -407,10 +407,12 @@ options ...
 
 The `options` line depends on the disk method you used.
 
-- Method 1: `options root=UUID=$(blkid -s UUID -o value /dev/sda2) rw`
+Preliminarily, you need to get a UUID of /dev/sda2 (root disk partition), it can be done by command execution: `$(blkid -s UUID -o value /dev/sda2)`
+
+- Method 1: `options root=UUID=<UUID_of_root_partition> rw`
 - Method 2: `options root=/dev/vg0/root rw`
-- Method 3: `options rd.luks.name=$(blkid -s UUID -o value /dev/sda3)=cryptroot root=/dev/mapper/cryptroot rw`
-- Method 4: `options rd.luks.name=$(blkid -s UUID -o value /dev/sda3)=cryptlvm root=/dev/vg0/root rw`
+- Method 3: `options rd.luks.name=<UUID_of_root_partition>=cryptroot root=/dev/mapper/cryptroot rw`
+- Method 4: `options rd.luks.name=<UUID_of_root_partition>=cryptlvm root=/dev/vg0/root rw`
 
 ## Intel Microcode
 
