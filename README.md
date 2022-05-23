@@ -27,6 +27,10 @@ If using a French keyboard:
 ```sh
 loadkeys fr
 ```
+or Russian: 
+```sh
+loadkeys ru
+```
 
 Check if system is under UEFI:
 
@@ -326,7 +330,7 @@ hwclock --systohc
 
 See https://wiki.archlinux.org/index.php/Locale
 
-Uncomment `en_US.UTF-8 UTF-8` (and `fr_FR.UTF-8 UTF-8` if needed) in `/etc/locale.gen`.
+Uncomment `en_US.UTF-8 UTF-8` (and `fr_FR.UTF-8 UTF-8`, or/and `ru_RU.UTF-8 UTF-8` if needed) in `/etc/locale.gen`.
 
 Generate locales:
 
@@ -341,7 +345,7 @@ echo "LANG=en_US.UTF-8
 LC_COLLATE=C" > /etc/locale.conf
 ```
 
-Set keymap to French (if needed):
+Set keymap to French or Russian (ru) (if needed):
 
 ```sh
 echo "KEYMAP=fr-latin9" > /etc/vconsole.conf
