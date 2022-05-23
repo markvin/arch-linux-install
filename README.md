@@ -37,7 +37,7 @@ ls /sys/firmware/efi/efivars
 Connect to wifi if needed
 
 ```sh
-wifi-menu
+iwctl
 ```
 
 Enable NTP and set timezone
